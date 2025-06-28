@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Racing Series - Bienvenidos</title>
+    <style>
+        /* --- FUENTE Y ESTILOS GENERALES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap');
+
+        :root {
+            --f1-red: #e10600;
+            --f1-dark-bg: #15151e;
+            --f1-card-bg: #1f1f27;
+            --f1-border-color: #38383f;
+            --f1-alpine-blue: #005bff;
+            --f1-ferrari-red: #dc0000;
+            --f1-mercedes-teal: #00d2be;
+        }
+
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            background-color: var(--f1-dark-bg);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- NUEVO MENÚ DE NAVEGACIÓN ESTILO F1 --- */
+        .main-nav-bar {
+            background-color: var(--f1-card-bg);
+            border-bottom: 1px solid var(--f1-border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 70px;
+            margin-right: 15px;
+        }
+
+        .logo-container .series-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: none; /* Oculto en pantallas pequeñas */
+        }
+        @media (min-width: 1024px) {
+            .logo-container .series-title {
+                display: block;
+            }
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+        }
+
+        .nav-item a.nav-link {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s, background-color 0.3s;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-item a.nav-link:hover, .nav-item.active a.nav-link {
+            color: var(--f1-red);
+            border-bottom-color: var(--f1-red);
+        }
+
+        /* --- CONTENEDOR PRINCIPAL Y VISTAS --- */
+        .main-container {
+            padding: 40px 20px;
+        }
+
+        /* Controla qué sección se muestra */
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        /* -- ESTILOS PARA LA NUEVA SECCIÓN DE BIENVENIDA -- */
+        #welcome-view {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .welcome-logo {
+            max-width: 350px;
+            margin: 0 auto 20px;
+        }
+        
+        .welcome-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .welcome-content {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+            }
+        }
+
+        .welcome-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0 0 15px 0;
+            line-height: 1.1;
+            color: var(--f1-red);
+        }
+
+        .welcome-text p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            line-height: 1.6;
+            color: #d0d0d0;
+            max-width: 600px;
+        }
+
+        .welcome-image-container {
+            max-width: 550px;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 0 auto;
+            border: 1px solid var(--f1-border-color);
+        }
+
+        .welcome-image-container img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* -- CALENDARIO --*/
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .race-card {
+            background-color: var(--f1-card-bg);
+            border: 1px solid var(--f1-border-color);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.2s ease-out, border-color 0.2s;
+        }
+
+        .race-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--f1-red);
+        }
+
+        .race-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .race-card-header .round {
+            color: #a0a0a0;
+        }
+        
+        .race-card-header .date {
+            background-color: var(--f1-dark-bg);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .race-card-body {
+            margin-top: 15px;
+            border-left: 3px solid var(--f1-red);
+            padding-left: 15px;
+        }
+
+        .race-card-body .gp-name {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        .race-card-body .gp-name span {
+             font-size: 1.5rem;
+        }
+
+        .race-card-body .official-name {
+            font-size: 0.9em;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* -- TABLAS DE POSICIONES -- */
+        .standings-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--f1-card-bg);
+            color: white;
+            border: 1px solid var(--f1-border-color);
+            padding: 10px 25px;
+            font-family: 'Titillium Web', sans-serif;
+            font-weight: 700;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .tab-btn:hover {
+            background-color: var(--f1-border-color);
+        }
+        .tab-btn.active {
+            background-color: var(--f1-red);
+            color: white;
+            border-color: var(--f1-red);
+        }
+
+        .division-content {
+            display: none;
+        }
+        .division-content.active {
+            display: block;
+        }
+
+        .division-section {
+            display: flex;
+            flex-direction: column; 
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .standings-container {
+            background-color: var(--f1-card-bg);
+            padding: 25px;
+            max-width: 750px;
+            width: 100%;
+            border-radius: 15px;
+            border: 1px solid var(--f1-border-color);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            color: #ffffff;
+            text-align: left;
+            padding-left: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--f1-red);
+        }
+
+        .header h1 {
+            margin: 0;
+            padding-left: 15px;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            margin: 5px 0 0 15px;
+            padding-left: 2px;
+            color: #a0a0a0;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            min-height: 60px; /* Para que el "Cargando..." tenga espacio */
+        }
+
+        .item-list li {
+            font-style: italic;
+            color: #a0a0a0;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 60px;
+            background-color: #2c2c34;
+            transition: background-color 0.2s ease-out;
+            font-style: normal !important;
+            color: #ffffff !important;
+        }
+
+        .list-item:hover {
+            background-color: #38383f;
+        }
+        
+        .position, .points {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            font-size: 1.5em;
+            width: 85px;
+        }
+        
+        .position {
+            color: #ffffff;
+            background-color: var(--f1-card-bg);
+        }
+        
+        .item-name {
+            font-weight: 600;
+            font-size: 1.5em;
+            color: #ffffff;
+            padding-left: 20px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+        }
+
+        .points {
+            color: #ffffff;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 850px) {
+            .nav-menu { display: none; }
+        }
+        
+        @media (max-width: 600px) {
+            .list-item { height: 55px; }
+            .item-name { font-size: 1.2em; padding-left: 15px; }
+            .position, .points { font-size: 1.2em; width: 65px; }
+        }
+
+        @media (min-width: 1550px) {
+            .division-section {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: center;
+            }
+        }
+
+        /* --- ESTILOS PARA LA SECCIÓN DE ADMINISTRACIÓN --- */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-card {
+            background-color: var(--f1-card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border-top: 5px solid;
+            transition: transform 0.3s ease;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .admin-card.alpine { border-color: var(--f1-alpine-blue); }
+        .admin-card.ferrari { border-color: var(--f1-ferrari-red); }
+        .admin-card.mercedes { border-color: var(--f1-mercedes-teal); }
+
+        .admin-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .admin-info {
+            padding: 20px;
+        }
+
+        .admin-info .gamertag {
+            font-size: 2em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+        
+        .admin-info .real-name {
+            font-size: 1.1em;
+            color: #b0b0b0;
+            margin: 0 0 20px 0;
+            font-weight: 600;
+        }
+
+        .admin-info .description {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #d0d0d0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-nav-bar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="Logo final.png" alt="Logo de Master Racing Series">
+                <span class="series-title">Master Racing Series</span>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li id="nav-welcome" class="nav-item active">
+                        <a class="nav-link" data-view="welcome-view">Bienvenida</a>
+                    </li>
+                    <li id="nav-calendar" class="nav-item">
+                        <a class="nav-link" data-view="calendar-view">Calendario S3</a>
+                    </li>
+                    <li id="nav-standings" class="nav-item">
+                        <a class="nav-link" data-view="standings-view">Resultados</a>
+                    </li>
+                     <li id="nav-rules" class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1HproEE1g1qtAtqE3AJvJb6s3OmKBXrfE/view?usp=sharing" target="_blank">Reglamento</a>
+                    </li>
+                    <li id="nav-admin" class="nav-item">
+                        <a class="nav-link" data-view="admin-view">Administración</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section id="welcome-view" class="view-section active">
+             <img src="Logo final.png" alt="Logo de Master Racing Series" class="welcome-logo">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h1>Master Racing Series</h1>
+                    <p>
+                        ¡Bienvenidos a la Season 3! Somos una liga de simracing multiplataforma (PC, Xbox, PS) dedicada al F1 25, que reúne a pilotos de toda Latinoamérica. Competimos en 4 divisiones diseñadas para todos los niveles, con ayudas variables que aseguran un desafío justo y emocionante tanto para novatos como para veteranos.
+                    </p>
+                </div>
+                <div class="welcome-image-container">
+                    <img src="Promocional season 3 MRS.jpeg" alt="Póster de la Season 3 de Master Racing Series">
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar-view" class="view-section">
+            <div class="calendar-grid">
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 1</span> <span class="date">13-18 JUL</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇺🇸</span> Miami</div><div class="official-name">FORMULA 1 CRYPTO.COM MIAMI GRAND PRIX 2025</div></div>
+                </div>
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 2</span> <span class="date">21-26 JUL</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇮🇹</span> Emilia-Romagna</div><div class="official-name">FORMULA 1 MSC CRUISES GRAN PREMIO DEL MADE IN ITALY E DELL'EMILIA-ROMAGNA 2025</div></div>
+                </div>
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 3</span> <span class="date">02-04 AGO</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇸🇦</span> Arabia Saudita</div><div class="official-name">FORMULA 1 STC SAUDI ARABIAN GRAND PRIX 2025</div></div>
+                </div>
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 4</span> <span class="date">07-10 AGO</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇪🇸</span> España</div><div class="official-name">FORMULA 1 ARAMCO GRAN PREMIO DE ESPAÑA 2025</div></div>
+                </div>
+                 <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 5</span> <span class="date">21-26 JUL</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇮🇹</span> Emilia-Romagna</div><div class="official-name">FORMULA 1 MSC CRUISES GRAN PREMIO DEL MADE IN ITALY E DELL'EMILIA-ROMAGNA 2025</div></div>
+                </div>
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 6</span> <span class="date">02-04 AGO</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇸🇦</span> Arabia Saudita</div><div class="official-name">FORMULA 1 STC SAUDI ARABIAN GRAND PRIX 2025</div></div>
+                </div>
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 7</span> <span class="date">07-10 AGO</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇪🇸</span> España</div><div class="official-name">FORMULA 1 ARAMCO GRAN PREMIO DE ESPAÑA 2025</div></div>
+                </div>
+                 <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 8</span> <span class="date">21-26 JUL</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇮🇹</span> Emilia-Romagna</div><div class="official-name">FORMULA 1 MSC CRUISES GRAN PREMIO DEL MADE IN ITALY E DELL'EMILIA-ROMAGNA 2025</div></div>
+                </div>
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 9</span> <span class="date">02-04 AGO</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇸🇦</span> Arabia Saudita</div><div class="official-name">FORMULA 1 STC SAUDI ARABIAN GRAND PRIX 2025</div></div>
+                </div>
+                <div class="race-card">
+                    <div class="race-card-header"><span class="round">Round 10</span> <span class="date">07-10 AGO</span></div>
+                    <div class="race-card-body"><div class="gp-name"><span>🇪🇸</span> España</div><div class="official-name">FORMULA 1 ARAMCO GRAN PREMIO DE ESPAÑA 2025</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="standings-view" class="view-section">
+            <div class="standings-tabs">
+                <button class="tab-btn active" data-division="1">División 1</button>
+                <button class="tab-btn" data-division="2">División 2</button>
+                <button class="tab-btn" data-division="3">División 3</button>
+                <button class="tab-btn" data-division="4">División 4</button>
+            </div>
+
+            <div id="division-1-content" class="division-content active">
+                <div class="division-section">
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV1 DRIVER<br>STANDINGS</h1><p>CAMPEONATO DE PILOTOS</p></div>
+                        <ul id="driver-list-d1" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV1 CONSTRUCTOR<br>STANDINGS</h1><p>CAMPEONATO DE CONSTRUCTORES</p></div>
+                        <ul id="constructor-list-d1" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="division-2-content" class="division-content">
+                 <div class="division-section">
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV2 DRIVER<br>STANDINGS</h1><p>CAMPEONATO DE PILOTOS</p></div>
+                        <ul id="driver-list-d2" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV2 CONSTRUCTOR<br>STANDINGS</h1><p>CAMPEONATO DE CONSTRUCTORES</p></div>
+                        <ul id="constructor-list-d2" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="division-3-content" class="division-content">
+                 <div class="division-section">
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV3 DRIVER<br>STANDINGS</h1><p>CAMPEONATO DE PILOTOS</p></div>
+                        <ul id="driver-list-d3" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV3 CONSTRUCTOR<br>STANDINGS</h1><p>CAMPEONATO DE CONSTRUCTORES</p></div>
+                        <ul id="constructor-list-d3" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="division-4-content" class="division-content">
+                 <div class="division-section">
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV4 DRIVER<br>STANDINGS</h1><p>CAMPEONATO DE PILOTOS</p></div>
+                        <ul id="driver-list-d4" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                    <div class="standings-container">
+                        <div class="header"><h1>DIV4 CONSTRUCTOR<br>STANDINGS</h1><p>CAMPEONATO DE CONSTRUCTORES</p></div>
+                        <ul id="constructor-list-d4" class="item-list"><li>Cargando...</li></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="admin-view" class="view-section">
+            <div class="admin-grid">
+                <div class="admin-card alpine">
+                    <img src="foto_facetas.jpeg" alt="Foto de Sebastian Munzenmayer">
+                    <div class="admin-info">
+                        <h3 class="gamertag">RLS_FACETAS</h3>
+                        <p class="real-name">Sebastian Munzenmayer</p>
+                        <p class="description">
+                            Relator principal y autoproclamado CEO de la liga. Este veterano del simracing chileno, con nombre de dictador y billetera de cobrador, domina los circuitos desde las heladas tierras de Punta Arenas, donde entrena domando pingüinos entre carreras. Se rumorea que cobra hasta por respirar.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="admin-card ferrari">
+                    <img src="foto_ironhunter.jpeg" alt="Foto de Gastón Sepúlveda">
+                    <div class="admin-info">
+                        <h3 class="gamertag">RLS_IRONHUNTER</h3>
+                        <p class="real-name">Gastón Sepúlveda</p>
+                        <p class="description">
+                            Encargado de RRSS, gráficas y stickers oficiales. Como fanático de Ferrari, es un experto en perder carreras en la última vuelta y transformar la desdicha en arte. ¿Cometiste un error en pista? Prepárate, porque te convertirás en su próximo sticker viral.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="admin-card mercedes">
+                    <img src="foto_iriarte.jpeg" alt="Foto de Esteban Iriarte">
+                    <div class="admin-info">
+                        <h3 class="gamertag">RLS_IRIARTE</h3>
+                        <p class="real-name">Esteban Iriarte</p>
+                        <p class="description">
+                            Relator sustituto y odontólogo de profesión. Cuando no está arreglando sonrisas, está narrando adelantamientos. Fue a Italia a cumplir el sueño de manejar una Ferrari y volvió con la factura, demostrando que su verdadera especialidad es la extracción... de euros.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- CONFIGURACIÓN ---
+            const BUCKET_NAME = 'mrs-standings-season3'; 
+            const GCS_BASE_URL = `https://storage.googleapis.com/${BUCKET_NAME}`;
+            
+            // --- CACHÉ DE DATOS ---
+            const standingsCache = new Map();
+
+            // --- LÓGICA DE NAVEGACIÓN DE VISTAS PRINCIPALES ---
+            const mainNavLinks = document.querySelectorAll('.nav-link[data-view]');
+            const mainViews = document.querySelectorAll('.view-section');
+            const mainNavItems = document.querySelectorAll('.nav-item');
+
+            mainNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetViewId = this.getAttribute('data-view');
+                    // Si el enlace no tiene 'data-view' (como el de reglamento), no hagas nada.
+                    if (!targetViewId) return;
+
+                    e.preventDefault();
+                    mainViews.forEach(view => view.classList.remove('active'));
+                    mainNavItems.forEach(item => item.classList.remove('active'));
+                    document.getElementById(targetViewId).classList.add('active');
+                    this.closest('.nav-item').classList.add('active');
+                });
+            });
+
+            // --- LÓGICA DE NAVEGACIÓN DE PESTAÑAS DE DIVISIÓN ---
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const divisionContents = document.querySelectorAll('.division-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const divisionNum = this.getAttribute('data-division');
+                    
+                    // Manejar estado activo de los botones
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Manejar visibilidad del contenido
+                    divisionContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(`division-${divisionNum}-content`).classList.add('active');
+
+                    // Cargar datos para la división seleccionada
+                    fetchAndDisplayStandings(divisionNum);
+                });
+            });
+
+            // --- LÓGICA PARA OBTENER Y MOSTRAR DATOS ---
+            async function fetchAndDisplayStandings(divisionNum) {
+                const driverListId = `driver-list-d${divisionNum}`;
+                const constructorListId = `constructor-list-d${divisionNum}`;
+                
+                if (standingsCache.has(divisionNum)) {
+                    const data = standingsCache.get(divisionNum);
+                    populateStandings(driverListId, data.pilotos, 'driver');
+                    populateStandings(constructorListId, data.constructores, 'constructor');
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${GCS_BASE_URL}/division_${divisionNum}.json?cachebust=${new Date().getTime()}`);
+                    if (!response.ok) {
+                        throw new Error(`No se pudo cargar el archivo para la División ${divisionNum}. Es posible que aún no se haya publicado.`);
+                    }
+                    const data = await response.json();
+                    
+                    standingsCache.set(divisionNum, data);
+                    
+                    populateStandings(driverListId, data.pilotos, 'driver');
+                    populateStandings(constructorListId, data.constructores, 'constructor');
+
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    document.getElementById(driverListId).innerHTML = `<li>Error al cargar datos. ${error.message}</li>`;
+                    document.getElementById(constructorListId).innerHTML = `<li>Error al cargar datos.</li>`;
+                }
+            }
+
+            function populateStandings(elementId, dataArray, type) {
+                const listElement = document.getElementById(elementId);
+                if (!listElement) return;
+
+                listElement.innerHTML = ''; 
+
+                if (!dataArray || dataArray.length === 0) {
+                    listElement.innerHTML = '<li>No hay datos disponibles.</li>';
+                    return;
+                }
+
+                dataArray.forEach((item, index) => {
+                    const position = index + 1;
+                    const name = (type === 'driver') ? item.id : item.equipo;
+                    const points = item.puntos;
+                    
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('list-item');
+                    listItem.innerHTML = `
+                        <div class="position">${position}</div>
+                        <div class="item-name">${name}</div>
+                        <div class="points">${points}</div>
+                    `;
+                    listElement.appendChild(listItem);
+                });
+            }
+
+            // --- INICIALIZACIÓN ---
+            // Cargar datos para la primera división por defecto si la vista de resultados está activa
+            if (document.getElementById('standings-view').classList.contains('active')) {
+                 fetchAndDisplayStandings('1');
+            }
+        });
+    </script>
+
+</body>
+</html>
