@@ -60,7 +60,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            display: none; /* Oculto en pantallas pequeñas */
+            display: none;
         }
         @media (min-width: 1024px) {
             .logo-container .series-title {
@@ -100,12 +100,79 @@
             border-bottom-color: var(--f1-red);
         }
 
+        /* --- BOTÓN DE HAMBURGUESA PARA MÓVIL --- */
+        .hamburger-menu {
+            display: none; /* Oculto por defecto */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .hamburger-menu .bar {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        /* --- ESTILOS PARA LA VISTA MÓVIL --- */
+        @media (max-width: 850px) {
+            .nav-menu {
+                display: none; /* Oculto hasta que se active */
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: var(--f1-dark-bg);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .nav-menu.active {
+                display: flex; /* Mostrar menú cuando esté activo */
+            }
+
+            .nav-item {
+                height: auto;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-item a.nav-link {
+                padding: 20px 0;
+                font-size: 1.5rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-item a.nav-link:hover, .nav-item.active a.nav-link {
+                border-bottom-color: transparent;
+                background-color: var(--f1-card-bg);
+            }
+
+            .hamburger-menu {
+                display: flex; /* Mostrar el botón de hamburguesa */
+            }
+        }
+
+
         /* --- CONTENEDOR PRINCIPAL Y VISTAS --- */
         .main-container {
             padding: 40px 20px;
         }
 
-        /* Controla qué sección se muestra */
         .view-section {
             display: none;
         }
@@ -113,7 +180,6 @@
             display: block;
         }
 
-        /* -- ESTILOS PARA LA NUEVA SECCIÓN DE BIENVENIDA -- */
         #welcome-view {
             max-width: 1400px;
             margin: 0 auto;
@@ -169,7 +235,6 @@
             display: block;
         }
         
-        /* -- CALENDARIO --*/
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -231,7 +296,6 @@
             margin-top: 5px;
         }
 
-        /* -- TABLAS DE POSICIONES -- */
         .standings-tabs {
             display: flex;
             justify-content: center;
@@ -320,7 +384,7 @@
             padding: 0;
             margin: 0;
             flex-grow: 1;
-            min-height: 60px; /* Para que el "Cargando..." tenga espacio */
+            min-height: 60px;
         }
 
         .item-list li {
@@ -376,10 +440,6 @@
             font-weight: 700;
         }
         
-        @media (max-width: 850px) {
-            .nav-menu { display: none; }
-        }
-        
         @media (max-width: 600px) {
             .list-item { height: 55px; }
             .item-name { font-size: 1.2em; padding-left: 15px; }
@@ -394,7 +454,6 @@
             }
         }
 
-        /* --- ESTILOS PARA LA SECCIÓN DE ADMINISTRACIÓN --- */
         .admin-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -480,6 +539,11 @@
                     </li>
                 </ul>
             </nav>
+            <button class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
         </div>
     </header>
 
@@ -645,12 +709,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- CONFIGURACIÓN ---
-            const BUCKET_NAME = 'mrs-standings-season3'; 
-            const GCS_BASE_URL = `https://storage.googleapis.com/${BUCKET_NAME}`;
             
-            // --- CACHÉ DE DATOS ---
-            const standingsCache = new Map();
+            // --- LÓGICA PARA EL MENÚ DE HAMBURGUESA ---
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navMenu = document.querySelector('.nav-menu');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
 
             // --- LÓGICA DE NAVEGACIÓN DE VISTAS PRINCIPALES ---
             const mainNavLinks = document.querySelectorAll('.nav-link[data-view]');
@@ -660,14 +726,22 @@
             mainNavLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     const targetViewId = this.getAttribute('data-view');
-                    // Si el enlace no tiene 'data-view' (como el de reglamento), no hagas nada.
                     if (!targetViewId) return;
 
                     e.preventDefault();
+                    
+                    // Ocultar todas las vistas y quitar la clase activa de los items
                     mainViews.forEach(view => view.classList.remove('active'));
                     mainNavItems.forEach(item => item.classList.remove('active'));
+                    
+                    // Mostrar la vista correcta y marcar el item como activo
                     document.getElementById(targetViewId).classList.add('active');
                     this.closest('.nav-item').classList.add('active');
+
+                    // Si el menú móvil está abierto, ciérralo
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
                 });
             });
 
@@ -679,20 +753,20 @@
                 button.addEventListener('click', function() {
                     const divisionNum = this.getAttribute('data-division');
                     
-                    // Manejar estado activo de los botones
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
 
-                    // Manejar visibilidad del contenido
                     divisionContents.forEach(content => content.classList.remove('active'));
                     document.getElementById(`division-${divisionNum}-content`).classList.add('active');
 
-                    // Cargar datos para la división seleccionada
                     fetchAndDisplayStandings(divisionNum);
                 });
             });
 
             // --- LÓGICA PARA OBTENER Y MOSTRAR DATOS ---
+            const standingsCache = new Map();
+            const GCS_BASE_URL = `https://storage.googleapis.com/mrs-standings-season3`;
+
             async function fetchAndDisplayStandings(divisionNum) {
                 const driverListId = `driver-list-d${divisionNum}`;
                 const constructorListId = `constructor-list-d${divisionNum}`;
@@ -751,9 +825,9 @@
             }
 
             // --- INICIALIZACIÓN ---
-            // Cargar datos para la primera división por defecto si la vista de resultados está activa
-            if (document.getElementById('standings-view').classList.contains('active')) {
-                 fetchAndDisplayStandings('1');
+            // Cargar datos para la primera división por defecto al entrar a la vista de resultados
+             if (document.querySelector('#nav-standings a').classList.contains('active')) {
+                fetchAndDisplayStandings('1');
             }
         });
     </script>
