@@ -417,15 +417,14 @@
         }
 
         .lineup-team-card {
-            background-color: var(--f1-card-bg); /* Color de fallback */
+            background-color: var(--f1-card-bg);
             border-radius: 15px;
             overflow: hidden;
             padding: 25px;
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 200px;
+            min-height: 220px;
             border: 1px solid var(--f1-border-color);
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
@@ -437,19 +436,18 @@
 
         .lineup-team-card .team-card-bg-car {
             position: absolute;
-            bottom: -20px;
-            right: -60px;
-            width: 250px;
+            bottom: -25px;
+            left: -40px;
+            width: 100%;
             height: auto;
-            opacity: 0.35;
+            opacity: 0.5;
             z-index: 0;
             pointer-events: none;
-            transition: transform 0.4s ease, opacity 0.4s ease;
+            transition: transform 0.4s ease;
         }
         
         .lineup-team-card:hover .team-card-bg-car {
             transform: scale(1.05);
-            opacity: 0.5;
         }
 
         .team-card-header, .team-card-body {
@@ -802,7 +800,7 @@
                         <a class="nav-link" data-view="rules-view">Reglamento S3</a>
                     </li>
                     <li id="nav-admin" class="nav-item">
-                        <a class="nav-link" data-view="admin-view">Administración</a>
+                        <a class="nav-link" data-view="admin-view">¿Quienes somos?</a>
                     </li>
                 </ul>
             </nav>
@@ -906,206 +904,216 @@
             
             <div id="lineup-1-content" class="lineup-content active">
                 <div class="lineup-grid">
-                    <div class="lineup-team-card team-mercedes">
-                        <div class="team-card-header"><h3 class="team-name">Mercedes</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS_FACETAS</li><li>RLS_IRONHUNTER</li></ul></div>
-                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-ferrari">
-                        <div class="team-card-header"><h3 class="team-name">Ferrari</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>AIST4R_JSQ</li><li>RLS_AVODRUMS</li></ul></div>
-                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-red-bull">
-                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS_DANTE</li><li>RLS_MATULEIN</li></ul></div>
-                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-mclaren">
-                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>FSZTER1</li><li>IVICENTE</li></ul></div>
-                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                    <div class="lineup-team-card team-alpine">
+                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>SKY_MOZART</li><li>VALEN46_NO_EL93</li></ul></div>
+                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-aston-martin">
                         <div class="team-card-header"><h3 class="team-name">Aston Martin</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>P1P3SS</li><li>VICENTE MASFERRE</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>RLS FACETAS</li><li>VICENTE MASFERRE</li></ul></div>
                         <img src="auto_astonmartin.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-alpine">
-                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>VALE46_NO_EL93</li><li>ALEX11S</li></ul></div>
-                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-vcarb">
-                        <div class="team-card-header"><h3 class="team-name">Visa Cash App RB</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>F1VADER07</li><li>RLS_RICKY87</li></ul></div>
-                        <img src="auto_racingbull.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-haas">
                         <div class="team-card-header"><h3 class="team-name">Haas</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>SIXKERK</li><li>SKY_MOZART</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>ALEX11S</li><li>SGC_DARUMA</li></ul></div>
                         <img src="auto_haas.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-kick-sauber">
                         <div class="team-card-header"><h3 class="team-name">KICK Sauber</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>JHZZAMORA</li><li>TANIZAKI</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>F1VADER07</li><li>SIXXERKK</li></ul></div>
                         <img src="auto_sauber.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mclaren">
+                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>F0ZTER1</li><li>GVVSPAR</li></ul></div>
+                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mercedes">
+                        <div class="team-card-header"><h3 class="team-name">Mercedes-AMG Petronas</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>JHZZAMORA</li><li>RLS_TANZAMORA</li></ul></div>
+                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-red-bull">
+                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>NVICENTER</li><li>RLS_IRONHUNTER</li></ul></div>
+                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-ferrari">
+                        <div class="team-card-header"><h3 class="team-name">Scuderia Ferrari HP</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>P1P3SS</li><li>RLS_RICKY87</li></ul></div>
+                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-vcarb">
+                        <div class="team-card-header"><h3 class="team-name">Visa Cash App RB</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>RLS_DANTE</li><li>RLS_MATULEIN</li></ul></div>
+                        <img src="auto_racingbull.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-williams">
                         <div class="team-card-header"><h3 class="team-name">Williams</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>GVISPAR</li><li>SGC_DARUMA</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>AIST4R_JSQ</li><li>RLS_AVODRUMS</li></ul></div>
                         <img src="auto_williams.avif" class="team-card-bg-car" alt="">
                     </div>
                 </div>
             </div>
             <div id="lineup-2-content" class="lineup-content">
                 <div class="lineup-grid">
-                    <div class="lineup-team-card team-mercedes">
-                        <div class="team-card-header"><h3 class="team-name">Mercedes</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>NEM_RATUCIO-14</li><li>NEM_RENZO</li></ul></div>
-                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-ferrari">
-                        <div class="team-card-header"><h3 class="team-name">Ferrari</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS_PRICE</li><li>LIXE EARVIN</li></ul></div>
-                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-red-bull">
-                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>NEM IRCBUZO</li><li>NEM_THAPIA</li></ul></div>
-                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-mclaren">
-                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS_RAIFUX0086</li><li>SPECTER_JSQ</li></ul></div>
-                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                    <div class="lineup-team-card team-alpine">
+                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>CLP_RACING</li><li>YERKO-404</li></ul></div>
+                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-aston-martin">
                         <div class="team-card-header"><h3 class="team-name">Aston Martin</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS IRIARTE</li><li>TORPEDO</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>NEM_RATUCIO-14</li><li>NEM_RENZO</li></ul></div>
                         <img src="auto_astonmartin.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-alpine">
-                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS_JANO</li><li>YERKO-404</li></ul></div>
-                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-vcarb">
-                        <div class="team-card-header"><h3 class="team-name">Visa Cash App RB</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>EDUARDO PIZARRO</li><li>ROAA</li></ul></div>
-                        <img src="auto_racingbull.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-haas">
                         <div class="team-card-header"><h3 class="team-name">Haas</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>NEM_STELLO</li><li>ZHADOWDASH</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>LIXE EARVIN10</li><li>SPECTER JSQ</li></ul></div>
                         <img src="auto_haas.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-kick-sauber">
                         <div class="team-card-header"><h3 class="team-name">KICK Sauber</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>PINTOCOLA_43</li><li>SGC_MAXIMO</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>NEM_THAPIA</li><li>SGC_MAXIMO</li></ul></div>
                         <img src="auto_sauber.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mclaren">
+                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>RLS IRIARTE</li><li>RLS_PRICE</li></ul></div>
+                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mercedes">
+                        <div class="team-card-header"><h3 class="team-name">Mercedes-AMG Petronas</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>EDUARDO PIZARRO</li><li>RLS_SIR_YOSHI</li></ul></div>
+                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-red-bull">
+                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>PINTOCOLA_43</li><li>ROAA</li></ul></div>
+                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-ferrari">
+                        <div class="team-card-header"><h3 class="team-name">Scuderia Ferrari HP</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>TORPED0</li><li>ZHADOWDASH</li></ul></div>
+                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-vcarb">
+                        <div class="team-card-header"><h3 class="team-name">Visa Cash App RB</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>NEM IRCBUZO</li><li>NEM_STELLO</li></ul></div>
+                        <img src="auto_racingbull.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-williams">
                         <div class="team-card-header"><h3 class="team-name">Williams</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>CLP_RACING</li><li>RLS_SIR_YOSHI</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>JACQUEXT TRAKE</li><li>RLS_JANO</li></ul></div>
                         <img src="auto_williams.avif" class="team-card-bg-car" alt="">
                     </div>
                 </div>
             </div>
             <div id="lineup-3-content" class="lineup-content">
                 <div class="lineup-grid">
-                     <div class="lineup-team-card team-mercedes">
-                        <div class="team-card-header"><h3 class="team-name">Mercedes</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>NEM_DBOSS</li><li>T1CHILEAN</li></ul></div>
-                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-ferrari">
-                        <div class="team-card-header"><h3 class="team-name">Ferrari</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>GONEZIO_F1</li><li>LIMPID_OVERHANG2</li></ul></div>
-                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-red-bull">
-                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS_MATIASTAPIA</li><li>SHELBY SRCC</li></ul></div>
-                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-mclaren">
-                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>RLS_MTROEMONSURDH</li><li>NAAFJZZ</li></ul></div>
-                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                     <div class="lineup-team-card team-alpine">
+                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>MARTINMARCOS</li><li>SHELBY SRCC</li></ul></div>
+                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-aston-martin">
                         <div class="team-card-header"><h3 class="team-name">Aston Martin</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>MARTINMARCOS</li><li>NASHONINO8734</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>CRS XAVI</li><li>NAAFJZZ2</li></ul></div>
                         <img src="auto_astonmartin.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-alpine">
-                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>KICK ROGELF1</li><li>KRIANGA SRCC</li></ul></div>
-                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-vcarb">
-                        <div class="team-card-header"><h3 class="team-name">Visa Cash App RB</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>CRS XAVI</li><li>FRETTED_ALCOPOP</li></ul></div>
-                        <img src="auto_racingbull.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-haas">
                         <div class="team-card-header"><h3 class="team-name">Haas</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>MAHOME156720</li><li>MATIARAVENAL</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>KRIANGA SRCC</li><li>NEM_IRCRUS162</li></ul></div>
                         <img src="auto_haas.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-kick-sauber">
                         <div class="team-card-header"><h3 class="team-name">KICK Sauber</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>AGATHOR</li><li>NEM_IRCRUS6162</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>BRYANDRKK</li><li>NASHONINJA9634</li></ul></div>
                         <img src="auto_sauber.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mclaren">
+                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>RLS_MATIASTAPIA</li><li>RLS_RAFUX0666</li></ul></div>
+                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mercedes">
+                        <div class="team-card-header"><h3 class="team-name">Mercedes-AMG Petronas</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>MAHOMIE156720</li><li>MATIARAVENAL</li></ul></div>
+                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-red-bull">
+                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>CHILEAN_UWU</li><li>GONEZO_F1</li></ul></div>
+                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-ferrari">
+                        <div class="team-card-header"><h3 class="team-name">Scuderia Ferrari HP</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>CRS OXA</li><li>FRETTED_ALCOPOP</li></ul></div>
+                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-vcarb">
+                        <div class="team-card-header"><h3 class="team-name">Visa Cash App RB</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>LIMPID_OVERHANG2</li><li>MTRDEMONSUROH</li></ul></div>
+                        <img src="auto_racingbull.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-williams">
                         <div class="team-card-header"><h3 class="team-name">Williams</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>BRYANORK</li><li>MR GATO</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>MR.GATO</li><li>NEM_DBOSS</li></ul></div>
                         <img src="auto_williams.avif" class="team-card-bg-car" alt="">
                     </div>
                 </div>
             </div>
             <div id="lineup-4-content" class="lineup-content">
                 <div class="lineup-grid">
-                    <div class="lineup-team-card team-mercedes">
-                        <div class="team-card-header"><h3 class="team-name">Mercedes</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>CDV-PAC</li><li>DAVIDJ25CS</li></ul></div>
-                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-ferrari">
-                        <div class="team-card-header"><h3 class="team-name">Ferrari</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>AGATHOR</li><li>HZWRE</li></ul></div>
-                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-red-bull">
-                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>BLUESNAKE1759</li><li>RIIEKEEN2020</li></ul></div>
-                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
-                    </div>
-                    <div class="lineup-team-card team-mclaren">
-                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>PASTEL260</li><li>SIR RODERICK360</li></ul></div>
-                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                    <div class="lineup-team-card team-alpine">
+                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>CRS LPATRICK</li><li>SIR RODERICK360</li></ul></div>
+                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-aston-martin">
                         <div class="team-card-header"><h3 class="team-name">Aston Martin</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>BIGKRAKKEN</li><li>FPEREZC348</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>BLUESNAKE1759</li><li>SILENRUNNING</li></ul></div>
                         <img src="auto_astonmartin.avif" class="team-card-bg-car" alt="">
                     </div>
-                    <div class="lineup-team-card team-alpine">
-                        <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>CRISSBARCAZA</li><li>MAIUNIZAGA</li></ul></div>
-                        <img src="auto_alpine.avif" class="team-card-bg-car" alt="">
+                    <div class="lineup-team-card team-haas">
+                        <div class="team-card-header"><h3 class="team-name">Haas</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>AGATHOR</li><li>ESW_MISTICO</li></ul></div>
+                        <img src="auto_haas.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-kick-sauber">
+                        <div class="team-card-header"><h3 class="team-name">KICK Sauber</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>FPEREZC348</li><li>KICK ROGELF1</li></ul></div>
+                        <img src="auto_sauber.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mclaren">
+                        <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>BAUTISTATRF</li><li>CHIKIXD_Z</li></ul></div>
+                        <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-mercedes">
+                        <div class="team-card-header"><h3 class="team-name">Mercedes-AMG Petronas</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>CDV-PAC</li><li>DAVIDJ25CS</li></ul></div>
+                        <img src="auto_mercedes.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-red-bull">
+                        <div class="team-card-header"><h3 class="team-name">Red Bull Racing</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>COREAHAM99</li><li>MIGUELMENDOZ21LP</li></ul></div>
+                        <img src="auto_redbull.avif" class="team-card-bg-car" alt="">
+                    </div>
+                    <div class="lineup-team-card team-ferrari">
+                        <div class="team-card-header"><h3 class="team-name">Scuderia Ferrari HP</h3></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>CRISBARCAZA</li><li>PASTEL260</li></ul></div>
+                        <img src="auto_ferrari.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-vcarb">
                         <div class="team-card-header"><h3 class="team-name">Visa Cash App RB</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>CRS LPATRICK</li><li>ESW_MISTICO</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>HZWIREV</li><li>M4UNIZAGA</li></ul></div>
                         <img src="auto_racingbull.avif" class="team-card-bg-car" alt="">
                     </div>
                      <div class="lineup-team-card team-williams">
                         <div class="team-card-header"><h3 class="team-name">Williams</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>BAUTISTATRF</li><li>SILENRUNNING</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>BIGKRAKKEN</li><li>RIEKEEN2020</li></ul></div>
                         <img src="auto_williams.avif" class="team-card-bg-car" alt="">
                     </div>
                 </div>
