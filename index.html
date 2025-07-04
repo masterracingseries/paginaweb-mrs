@@ -514,6 +514,66 @@
         }
         /* --- FIN: NUEVO DISEÑO DE ALINEACIONES --- */
 
+        /* --- INICIO: INFO DE DIVISIÓN --- */
+        .division-info-header {
+            background-color: var(--f1-card-bg);
+            border: 1px solid var(--f1-border-color);
+            border-radius: 10px;
+            padding: 20px 25px;
+            max-width: 1400px;
+            margin: 0 auto 30px auto;
+            text-align: center;
+        }
+
+        .division-info-header .race-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--f1-red);
+            margin-bottom: 15px;
+        }
+        
+        .division-info-header .race-day span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #d0d0d0;
+            margin-left: 10px;
+        }
+
+        .division-info-header .assists-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #a0a0a0;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--f1-border-color);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .division-info-header .assists-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .division-info-header .assists-list li {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .division-info-header .assists-list li span {
+            font-weight: 400;
+            color: #b0b0b0;
+        }
+        /* --- FIN: INFO DE DIVISIÓN --- */
+
         .division-content {
             display: none;
         }
@@ -903,6 +963,17 @@
             </div>
             
             <div id="lineup-1-content" class="lineup-content active">
+                <div class="division-info-header">
+                    <div class="race-day">Jueves <span>21:30 HRS (CL)</span></div>
+                    <h4 class="assists-title">Ayudas Permitidas</h4>
+                    <ul class="assists-list">
+                        <li>Trazada Dinámica: <span>Solo en curvas</span></li>
+                        <li>Caja de Cambios: <span>Manual</span></li>
+                        <li>ERS y DRS: <span>Manual</span></li>
+                        <li>ABS: <span>Desactivado</span></li>
+                        <li>Control de Tracción: <span>Desactivado</span></li>
+                    </ul>
+                </div>
                 <div class="lineup-grid">
                     <div class="lineup-team-card team-alpine">
                         <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
@@ -916,17 +987,17 @@
                     </div>
                     <div class="lineup-team-card team-haas">
                         <div class="team-card-header"><h3 class="team-name">Haas</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>ALEX11S</li><li>SGC_DARUMA</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>SIXXERK</li><li>SGC_DARUMA</li></ul></div>
                         <img src="auto_haas.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-kick-sauber">
                         <div class="team-card-header"><h3 class="team-name">KICK Sauber</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>F1VADER07</li><li>SIXXERKK</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>F0ZTER1</li><li>GVVSPAR</li></ul></div>
                         <img src="auto_sauber.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-mclaren">
                         <div class="team-card-header"><h3 class="team-name">McLaren</h3></div>
-                        <div class="team-card-body"><ul class="driver-list"><li>F0ZTER1</li><li>GVVSPAR</li></ul></div>
+                        <div class="team-card-body"><ul class="driver-list"><li>ALEX11S</li><li>F1VADER07</li></ul></div>
                         <img src="auto_mclaren.avif" class="team-card-bg-car" alt="">
                     </div>
                     <div class="lineup-team-card team-mercedes">
@@ -957,6 +1028,17 @@
                 </div>
             </div>
             <div id="lineup-2-content" class="lineup-content">
+                <div class="division-info-header">
+                    <div class="race-day">Martes <span>21:30 HRS (CL)</span></div>
+                    <h4 class="assists-title">Ayudas Permitidas</h4>
+                    <ul class="assists-list">
+                        <li>Control de Tracción: <span>Media</span></li>
+                        <li>Trazada Dinámica: <span>Solo en curvas</span></li>
+                        <li>Caja de Cambios: <span>Manual</span></li>
+                        <li>ERS y DRS: <span>Manual</span></li>
+                        <li>ABS: <span>Desactivado</span></li>
+                    </ul>
+                </div>
                 <div class="lineup-grid">
                     <div class="lineup-team-card team-alpine">
                         <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
@@ -1011,6 +1093,17 @@
                 </div>
             </div>
             <div id="lineup-3-content" class="lineup-content">
+                <div class="division-info-header">
+                    <div class="race-day">Miércoles <span>21:30 HRS (CL)</span></div>
+                    <h4 class="assists-title">Ayudas Permitidas</h4>
+                    <ul class="assists-list">
+                        <li>Frenos Antibloqueo (ABS): <span>Activado</span></li>
+                        <li>Control de Tracción: <span>Completo</span></li>
+                        <li>Caja de Cambios: <span>Automático</span></li>
+                        <li>Trazada Dinámica: <span>Solo en curvas</span></li>
+                        <li>ERS y DRS: <span>Manual</span></li>
+                    </ul>
+                </div>
                 <div class="lineup-grid">
                      <div class="lineup-team-card team-alpine">
                         <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
@@ -1065,6 +1158,17 @@
                 </div>
             </div>
             <div id="lineup-4-content" class="lineup-content">
+                <div class="division-info-header">
+                    <div class="race-day">Lunes <span>21:30 HRS (CL)</span></div>
+                    <h4 class="assists-title">Ayudas Permitidas</h4>
+                    <ul class="assists-list">
+                        <li>Frenos Antibloqueo (ABS): <span>Activado</span></li>
+                        <li>Control de Tracción: <span>Completo</span></li>
+                        <li>Caja de Cambios: <span>Automático</span></li>
+                        <li>Trazada Dinámica: <span>Solo en curvas</span></li>
+                        <li>ERS y DRS: <span>Manual</span></li>
+                    </ul>
+                </div>
                 <div class="lineup-grid">
                     <div class="lineup-team-card team-alpine">
                         <div class="team-card-header"><h3 class="team-name">Alpine</h3></div>
