@@ -15,16 +15,16 @@
             --f1-border-color: #38383f;
             
             /* --- COLORES OFICIALES DE EQUIPOS --- */
-            --f1-alpine-blue: #005bff;
-            --f1-aston-martin-green: #006F62;
-            --f1-ferrari-red: #dc0000;
-            --f1-haas-gray: #787878;
-            --f1-kick-sauber-green: #00DD30;
-            --f1-mclaren-orange: #FF8700;
-            --f1-mercedes-teal: #00d2be;
-            --f1-red-bull-blue: #06002F;
-            --f1-vcarb-blue: #0032FF;
-            --f1-williams-blue: #00A0DE;
+            --f1-alpine-color: #005bff;
+            --f1-aston-martin-color: #006F62;
+            --f1-ferrari-color: #dc0000;
+            --f1-haas-color: #787878;
+            --f1-kick-sauber-color: #00DD30;
+            --f1-mclaren-color: #FF8700;
+            --f1-mercedes-color: #00d2be;
+            --f1-red-bull-color: #06002F;
+            --f1-vcarb-color: #0032FF;
+            --f1-williams-color: #00A0DE;
         }
 
         body {
@@ -292,12 +292,12 @@
         }
 
         .sprint-tag {
-            background-color: var(--f1-alpine-blue);
+            background-color: var(--f1-alpine-color);
             color: white;
         }
 
         .inverted-tag {
-            background-color: var(--f1-mercedes-teal);
+            background-color: var(--f1-mercedes-color);
             color: white;
         }
 
@@ -478,19 +478,19 @@
             margin-bottom: 8px;
         }
 
-        /* Colores de fondo para cada equipo */
-        .lineup-team-card.team-alpine { background-color: #005bff; }
-        .lineup-team-card.team-aston-martin { background-color: #006F62; }
-        .lineup-team-card.team-ferrari { background-color: #dc0000; }
-        .lineup-team-card.team-haas { background-color: #787878; }
-        .lineup-team-card.team-kick-sauber { background-color: #00DD30; }
-        .lineup-team-card.team-mclaren { background-color: #FF8700; }
-        .lineup-team-card.team-mercedes { background-color: #00d2be; }
-        .lineup-team-card.team-red-bull { background-color: #06002F; }
-        .lineup-team-card.team-vcarb { background-color: #0032FF; }
-        .lineup-team-card.team-williams { background-color: #00A0DE; }
+        /* --- Colores de fondo para cada equipo en ALINEACIONES --- */
+        .lineup-team-card.team-alpine { background-color: var(--f1-alpine-color); }
+        .lineup-team-card.team-aston-martin { background-color: var(--f1-aston-martin-color); }
+        .lineup-team-card.team-ferrari { background-color: var(--f1-ferrari-color); }
+        .lineup-team-card.team-haas { background-color: var(--f1-haas-color); }
+        .lineup-team-card.team-kick-sauber { background-color: var(--f1-kick-sauber-color); }
+        .lineup-team-card.team-mclaren { background-color: var(--f1-mclaren-color); }
+        .lineup-team-card.team-mercedes { background-color: var(--f1-mercedes-color); }
+        .lineup-team-card.team-red-bull { background-color: var(--f1-red-bull-color); }
+        .lineup-team-card.team-vcarb { background-color: var(--f1-vcarb-color); }
+        .lineup-team-card.team-williams { background-color: var(--f1-williams-color); }
 
-        /* Ajustes para el texto en fondos claros */
+        /* Ajustes para el texto en fondos claros de ALINEACIONES */
         .lineup-team-card.team-haas .team-name,
         .lineup-team-card.team-kick-sauber .team-name,
         .lineup-team-card.team-mercedes .team-name,
@@ -646,18 +646,26 @@
             margin-bottom: 8px;
             border-radius: 8px;
             overflow: hidden;
-            height: 60px;
-            background-color: #2c2c34;
-            transition: background-color 0.2s ease-out;
+            height: 70px;
+            /* --- CAMBIO: Se añade position relative y se quita el background-color --- */
+            position: relative; 
+            transition: transform 0.2s ease-out;
             font-style: normal !important;
             color: #ffffff !important;
         }
 
         .list-item:hover {
-            background-color: #38383f;
+            transform: scale(1.02);
         }
         
-        .position, .points {
+        .position, .points, .item-name {
+             /* --- CAMBIO: Se posicionan sobre el fondo y se les da fondo transparente --- */
+            position: relative;
+            z-index: 2;
+            background: transparent;
+        }
+        
+        .position {
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -665,16 +673,14 @@
             box-sizing: border-box;
             font-size: 1.5em;
             width: 85px;
-        }
-        
-        .position {
             color: #ffffff;
-            background-color: var(--f1-card-bg);
+            /* --- CAMBIO: Superposición oscura sutil para asegurar visibilidad --- */
+            background-color: rgba(0, 0, 0, 0.2);
         }
         
         .item-name {
-            font-weight: 600;
-            font-size: 1.5em;
+            font-weight: 700;
+            font-size: 1.8em;
             color: #ffffff;
             padding-left: 20px;
             flex-grow: 1;
@@ -682,14 +688,98 @@
             align-items: center;
             text-transform: uppercase;
         }
+        
+        .item-name .driver-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.2;
+        }
+        .item-name .driver-sub-details {
+            font-size: 0.65em;
+            font-weight: 400;
+            color: #e0e0e0;
+            text-transform: none;
+        }
+
 
         .points {
-            color: #ffffff;
+            color: #000000;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            font-size: 1.5em;
+            width: 85px;
+            background-color: rgba(255, 255, 255, 0.8); /* ¡AÑADE ESTA LÍNEA! */
         }
         
+        /* --- INICIO: NUEVOS ESTILOS DE EQUIPO PARA LA TABLA DE RESULTADOS --- */
+        .list-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50%;
+            background-position: 300px center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+        .list-item:hover::before {
+            opacity: 0.3;
+        }
+
+        .list-item.team-alpine { background-color: var(--f1-alpine-color); }
+        .list-item.team-alpine::before { background-image: url('auto_alpine.avif'); }
+        
+        .list-item.team-aston-martin { background-color: var(--f1-aston-martin-color); }
+        .list-item.team-aston-martin::before { background-image: url('auto_astonmartin.avif'); }
+
+        .list-item.team-ferrari { background-color: var(--f1-ferrari-color); }
+        .list-item.team-ferrari::before { background-image: url('auto_ferrari.avif'); }
+
+        .list-item.team-haas { background-color: var(--f1-haas-color); }
+        .list-item.team-haas::before { background-image: url('auto_haas.avif'); }
+
+        .list-item.team-kick-sauber { background-color: var(--f1-kick-sauber-color); }
+        .list-item.team-kick-sauber::before { background-image: url('auto_sauber.avif'); }
+        
+        .list-item.team-mclaren { background-color: var(--f1-mclaren-color); }
+        .list-item.team-mclaren::before { background-image: url('auto_mclaren.avif'); }
+
+        .list-item.team-mercedes { background-color: var(--f1-mercedes-color); }
+        .list-item.team-mercedes::before { background-image: url('auto_mercedes.avif'); }
+
+        .list-item.team-red-bull { background-color: var(--f1-red-bull-color); }
+        .list-item.team-red-bull::before { background-image: url('auto_redbull.avif'); }
+        
+        .list-item.team-vcarb { background-color: var(--f1-vcarb-color); }
+        .list-item.team-vcarb::before { background-image: url('auto_racingbull.avif'); }
+
+        .list-item.team-williams { background-color: var(--f1-williams-color); }
+        .list-item.team-williams::before { background-image: url('auto_williams.avif'); }
+
+        /* Ajustes para texto en fondos claros */
+        .list-item.team-haas .item-name, .list-item.team-haas .points, .list-item.team-haas .position,
+        .list-item.team-kick-sauber .item-name, .list-item.team-kick-sauber .points, .list-item.team-kick-sauber .position,
+        .list-item.team-mercedes .item-name, .list-item.team-mercedes .points, .list-item.team-mercedes .position {
+            color: var(--f1-dark-bg);
+        }
+        .list-item.team-haas .driver-sub-details,
+        .list-item.team-kick-sauber .driver-sub-details,
+        .list-item.team-mercedes .driver-sub-details {
+            color: #333;
+        }
+        /* --- FIN: NUEVOS ESTILOS DE EQUIPO --- */
+        
+        
         @media (max-width: 600px) {
-            .list-item { height: 55px; }
+            .list-item { height: 65px; }
             .item-name { font-size: 1.2em; padding-left: 15px; }
             .position, .points { font-size: 1.2em; width: 65px; }
         }
@@ -753,9 +843,9 @@
             transform: translateY(-8px);
         }
 
-        .admin-card.alpine { border-color: var(--f1-alpine-blue); }
-        .admin-card.ferrari { border-color: var(--f1-ferrari-red); }
-        .admin-card.mercedes { border-color: var(--f1-mercedes-teal); }
+        .admin-card.alpine { border-color: var(--f1-alpine-color); }
+        .admin-card.ferrari { border-color: var(--f1-ferrari-color); }
+        .admin-card.mercedes { border-color: var(--f1-mercedes-color); }
 
         .admin-card img {
             width: 100%;
@@ -1363,15 +1453,12 @@
 
                     e.preventDefault();
                     
-                    // Ocultar todas las vistas y quitar la clase activa de los items
                     mainViews.forEach(view => view.classList.remove('active'));
                     mainNavItems.forEach(item => item.classList.remove('active'));
                     
-                    // Mostrar la vista correcta y marcar el item como activo
                     document.getElementById(targetViewId).classList.add('active');
                     this.closest('.nav-item').classList.add('active');
 
-                    // Si el menú móvil está abierto, ciérralo
                     if (navMenu.classList.contains('active')) {
                         navMenu.classList.remove('active');
                     }
@@ -1421,6 +1508,9 @@
                 const driverListId = `driver-list-d${divisionNum}`;
                 const constructorListId = `constructor-list-d${divisionNum}`;
                 
+                document.getElementById(driverListId).innerHTML = '<li>Cargando...</li>';
+                document.getElementById(constructorListId).innerHTML = '<li>Cargando...</li>';
+
                 if (standingsCache.has(divisionNum)) {
                     const data = standingsCache.get(divisionNum);
                     populateStandings(driverListId, data.pilotos, 'driver');
@@ -1446,6 +1536,26 @@
                     document.getElementById(constructorListId).innerHTML = `<li>Error al cargar datos.</li>`;
                 }
             }
+            
+            // --- INICIO: NUEVA FUNCIÓN PARA OBTENER LA CLASE DEL EQUIPO ---
+            function getTeamClassName(teamName) {
+                if (!teamName) return '';
+                const lowerCaseName = teamName.toLowerCase();
+
+                if (lowerCaseName.includes('alpine')) return 'team-alpine';
+                if (lowerCaseName.includes('aston martin')) return 'team-aston-martin';
+                if (lowerCaseName.includes('ferrari')) return 'team-ferrari';
+                if (lowerCaseName.includes('haas')) return 'team-haas';
+                if (lowerCaseName.includes('kick') || lowerCaseName.includes('sauber')) return 'team-kick-sauber';
+                if (lowerCaseName.includes('mclaren')) return 'team-mclaren';
+                if (lowerCaseName.includes('mercedes')) return 'team-mercedes';
+                if (lowerCaseName.includes('red bull')) return 'team-red-bull';
+                if (lowerCaseName.includes('vcarb') || lowerCaseName.includes('visa')) return 'team-vcarb';
+                if (lowerCaseName.includes('williams')) return 'team-williams';
+                
+                return ''; // Retorna vacío si no hay coincidencia
+            }
+            // --- FIN: NUEVA FUNCIÓN ---
 
             function populateStandings(elementId, dataArray, type) {
                 const listElement = document.getElementById(elementId);
@@ -1460,25 +1570,54 @@
 
                 dataArray.forEach((item, index) => {
                     const position = index + 1;
-                    const name = (type === 'driver') ? item.id : item.equipo;
                     const points = item.puntos;
                     
                     const listItem = document.createElement('li');
+                    
+                    // --- CAMBIO: Lógica para añadir la clase del equipo dinámicamente ---
+                    const teamName = (type === 'driver') ? item.equipo : item.equipo;
+                    const teamClass = getTeamClassName(teamName);
+                    
                     listItem.classList.add('list-item');
-                    listItem.innerHTML = `
-                        <div class="position">${position}</div>
-                        <div class="item-name">${name}</div>
-                        <div class="points">${points}</div>
-                    `;
+                    if (teamClass) {
+                        listItem.classList.add(teamClass);
+                    }
+                    // --- FIN DEL CAMBIO ---
+
+                    if (type === 'driver') {
+                        const name = item.id;
+                        const team = item.equipo;
+                        const status = item.status;
+                        listItem.innerHTML = `
+                            <div class="position">${position}</div>
+                            <div class="item-name">
+                                <div class="driver-details">
+                                    <span>${name}</span>
+                                    <span class="driver-sub-details">${team} &bull; ${status}</span>
+                                </div>
+                            </div>
+                            <div class="points">${points}</div>
+                        `;
+                    } else {
+                        const name = item.equipo;
+                        listItem.innerHTML = `
+                            <div class="position">${position}</div>
+                            <div class="item-name">${name}</div>
+                            <div class="points">${points}</div>
+                        `;
+                    }
                     listElement.appendChild(listItem);
                 });
             }
 
             // --- INICIALIZACIÓN ---
             // Cargar datos para la primera división por defecto al entrar a la vista de resultados
-             if (document.querySelector('#nav-standings a').closest('.nav-item').classList.contains('active')) {
-                fetchAndDisplayStandings('1');
-            }
+            document.querySelector('#nav-standings a').addEventListener('click', () => fetchAndDisplayStandings('1'));
+
+            // Si la página se carga directamente en la vista de resultados, cargar D1.
+            // Opcional: precargar siempre la D1 para que esté lista.
+            fetchAndDisplayStandings('1');
+
         });
     </script>
 
