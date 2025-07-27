@@ -15,8 +15,6 @@
             --f1-border-color: #38383f;
             --f1-white: #ffffff;
             --f1-text-dark: #15151e;
-
-            /* --- INICIO: COLORES DE FONDO ACTUALIZADOS SEGÚN IMAGEN --- */
             --logo-bg-mercedes: #1cc6b4;
             --logo-bg-ferrari: #e2041a;
             --logo-bg-mclaren: #ff8319;
@@ -27,7 +25,6 @@
             --logo-bg-aston-martin: #00594f;
             --logo-bg-red-bull: #011d30;
             --logo-bg-alpine: #001027;
-            /* --- FIN: COLORES DE FONDO --- */
         }
 
         body {
@@ -38,7 +35,7 @@
             padding: 0;
         }
 
-        /* --- MENÚ DE NAVEGACIÓN (SIN CAMBIOS) --- */
+        /* --- MENÚ DE NAVEGACIÓN --- */
         .main-nav-bar { background-color: var(--f1-card-bg); border-bottom: 1px solid var(--f1-border-color); position: sticky; top: 0; z-index: 1000; }
         .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; padding: 0 20px; height: 80px; }
         .logo-container { display: flex; align-items: center; }
@@ -53,12 +50,18 @@
         .hamburger-menu .bar { width: 30px; height: 3px; background-color: white; border-radius: 10px; transition: all 0.3s linear; }
         @media (max-width: 850px) { .nav-menu { display: none; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100vh; position: absolute; top: 0; left: 0; background-color: var(--f1-dark-bg); } .nav-menu.active { display: flex; } .nav-item { height: auto; width: 100%; text-align: center; } .nav-item a.nav-link { padding: 20px 0; font-size: 1.5rem; width: 100%; justify-content: center; } .nav-item a.nav-link:hover, .nav-item.active a.nav-link { border-bottom-color: transparent; background-color: var(--f1-card-bg); } .hamburger-menu { display: flex; } }
 
-        /* --- CONTENEDOR PRINCIPAL Y VISTAS (SIN CAMBIOS) --- */
+        /* --- CONTENEDOR PRINCIPAL Y VISTAS --- */
         .main-container { padding: 40px 20px; }
-        .view-section { display: none; }
-        .view-section.active { display: block; }
+        .view-section, .lineup-content, #standings-view .division-content { display: none; }
+        .view-section.active, .lineup-content.active, #standings-view .division-content.active { display: block; }
 
-        /* --- VISTAS SIN CAMBIOS (BIENVENIDA, CALENDARIO, REGLAMENTO, ADMIN) --- */
+        /* --- ESTILOS COMPARTIDOS (PESTAÑAS, ETC.) --- */
+        .standings-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab-btn { background-color: var(--f1-card-bg); color: white; border: 1px solid var(--f1-border-color); padding: 10px 25px; font-family: 'Titillium Web', sans-serif; font-weight: 700; font-size: 1em; border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+        .tab-btn:hover { background-color: var(--f1-border-color); }
+        .tab-btn.active { background-color: var(--f1-red); color: white; border-color: var(--f1-red); }
+
+        /* --- VISTAS (BIENVENIDA, CALENDARIO, REGLAMENTO, ADMIN) --- */
         #welcome-view { max-width: 1400px; margin: 0 auto; text-align: center; }
         .welcome-logo { max-width: 350px; margin: 0 auto 20px; }
         .welcome-content { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
@@ -100,12 +103,7 @@
         .admin-info .real-name { font-size: 1.1em; color: #b0b0b0; margin: 0 0 20px 0; font-weight: 600; }
         .admin-info .description { font-size: 1em; line-height: 1.6; color: #d0d0d0; margin: 0; }
         
-        /* --- ESTILOS ALINEACIONES (SIN CAMBIOS) --- */
-        #lineups-view .standings-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        #lineups-view .tab-btn { background-color: var(--f1-card-bg); color: white; border: 1px solid var(--f1-border-color); padding: 10px 25px; font-family: 'Titillium Web', sans-serif; font-weight: 700; font-size: 1em; border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
-        #lineups-view .tab-btn:hover { background-color: var(--f1-border-color); }
-        #lineups-view .tab-btn.active { background-color: var(--f1-red); color: white; border-color: var(--f1-red); }
-        .lineup-content { display: none; } .lineup-content.active { display: block; }
+        /* --- ESTILOS ALINEACIONES --- */
         .lineup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; max-width: 1400px; margin: 0 auto; }
         .lineup-team-card { background-color: var(--f1-card-bg); border-radius: 15px; overflow: hidden; padding: 25px; position: relative; display: flex; flex-direction: column; min-height: 220px; border: 1px solid var(--f1-border-color); transition: transform 0.3s ease, border-color 0.3s ease; }
         .lineup-team-card:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.7); }
@@ -127,96 +125,25 @@
         .division-info-header .assists-list li { font-size: 1rem; font-weight: 600; color: var(--f1-white); }
         .division-info-header .assists-list li span { font-weight: 400; color: #b0b0b0; }
 
-        /* --- INICIO: ESTILOS FINALES PARA LA VISTA DE RESULTADOS --- */
-        #standings-view .standings-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        #standings-view .tab-btn { background-color: var(--f1-card-bg); color: white; border: 1px solid var(--f1-border-color); padding: 10px 25px; font-family: 'Titillium Web', sans-serif; font-weight: 700; font-size: 1em; border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
-        #standings-view .tab-btn:hover { background-color: var(--f1-border-color); }
-        #standings-view .tab-btn.active { background-color: var(--f1-red); color: white; border-color: var(--f1-red); }
-        #standings-view .division-content { display: none; }
-        #standings-view .division-content.active { display: block; }
+        /* --- ESTILOS VISTA DE RESULTADOS --- */
         #standings-view .division-section { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1400px; margin: 0 auto; }
         @media (min-width: 1200px) { #standings-view .division-section { grid-template-columns: 1fr 1fr; gap: 30px; } }
-        
         .standings-container { background-color: var(--f1-card-bg); padding: 25px; width: 100%; border-radius: 15px; border: 1px solid var(--f1-border-color); box-sizing: border-box; }
         .header { color: var(--f1-white); text-align: left; padding-left: 10px; margin-bottom: 25px; border-left: 5px solid var(--f1-red); }
         .header h1 { margin: 0; padding-left: 15px; font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 700; line-height: 1.1; text-transform: uppercase; }
         .header p { margin: 5px 0 0 15px; padding-left: 2px; color: #a0a0a0; font-size: clamp(0.8rem, 2vw, 1rem); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-
         .item-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
         .item-list li.loading-placeholder, .item-list li.error-placeholder { font-style: italic; color: #a0a0a0; padding: 20px; text-align: center; }
-        
         .standings-item { display: flex; height: 60px; border-radius: 10px; overflow: hidden; transition: transform 0.2s ease-out; }
         .standings-item:hover { transform: scale(1.02); }
-
-        .position-logo-wrapper {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-            width: 150px; /* MEJORA 1: Ancho aumentado */
-            background-color: var(--f1-card-bg);
-        }
-        .position {
-            font-weight: 700;
-            font-size: 1.5em;
-            height: 100%;
-            width: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--f1-white);
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-        .logo-container-standings {
-            flex-grow: 1;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .position-logo-wrapper { display: flex; align-items: center; flex-shrink: 0; width: 150px; background-color: var(--f1-card-bg); }
+        .position { font-weight: 700; font-size: 1.5em; height: 100%; width: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--f1-white); background-color: rgba(0, 0, 0, 0.2); }
+        .logo-container-standings { flex-grow: 1; height: 100%; display: flex; align-items: center; justify-content: center; }
         .logo-container-standings img { max-width: 45px; max-height: 45px; object-fit: contain; }
-
-        .name-wrapper {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            background-color: var(--f1-white);
-            background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
-            background-size: 4px 4px;
-        }
-        .item-name {
-            color: var(--f1-text-dark);
-            font-weight: 900;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .driver-sub-details {
-            display: block;
-            font-size: 0.55em;
-            font-weight: 600;
-            color: #555;
-            text-transform: none;
-            line-height: 1.2;
-        }
-        
-        .points-container {
-            background-color: var(--f1-red);
-            height: 100%;
-            width: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-weight: 700;
-            font-size: 1.8em;
-            color: var(--f1-white);
-        }
-
-        /* MEJORA 2: Aplicar colores de fondo de logo a la franja lateral */
+        .name-wrapper { flex-grow: 1; display: flex; align-items: center; padding: 0 20px; background-color: var(--f1-white); background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px); background-size: 4px 4px; }
+        .item-name { color: var(--f1-text-dark); font-weight: 900; font-size: 1.5em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .driver-sub-details { display: block; font-size: 0.55em; font-weight: 600; color: #555; text-transform: none; line-height: 1.2; }
+        .points-container { background-color: var(--f1-red); height: 100%; width: 90px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; font-size: 1.8em; color: var(--f1-white); }
         .team-alpine .position-logo-wrapper { background-color: var(--logo-bg-alpine); }
         .team-aston-martin .position-logo-wrapper { background-color: var(--logo-bg-aston-martin); }
         .team-ferrari .position-logo-wrapper { background-color: var(--logo-bg-ferrari); }
@@ -227,26 +154,59 @@
         .team-red-bull .position-logo-wrapper { background-color: var(--logo-bg-red-bull); }
         .team-vcarb .position-logo-wrapper { background-color: var(--logo-bg-vcarb); }
         .team-williams .position-logo-wrapper { background-color: var(--logo-bg-williams); }
-
-        @media (max-width: 600px) {
-            .standings-item { height: 55px; }
-            .position-logo-wrapper { width: 120px; /* MEJORA 1: Ancho aumentado para móvil */ }
-            .position { width: 50px; font-size: 1.2em; }
-            .logo-container-standings img { max-width: 40px; max-height: 40px; }
-            .name-wrapper { padding: 0 10px; }
-            .item-name { font-size: 1.1em; }
-            .points-container { width: 70px; font-size: 1.4em; }
-        }
-        /* --- FIN: ESTILOS FINALES PARA LA VISTA DE RESULTADOS --- */
+        @media (max-width: 600px) { .standings-item { height: 55px; } .position-logo-wrapper { width: 120px; } .position { width: 50px; font-size: 1.2em; } .logo-container-standings img { max-width: 40px; max-height: 40px; } .name-wrapper { padding: 0 10px; } .item-name { font-size: 1.1em; } .points-container { width: 70px; font-size: 1.4em; } }
         
-        /* --- FOOTER (SIN CAMBIOS) --- */
+                /* --- INICIO: ESTILOS SECCIÓN DE VIDEOS --- */
+        .video-section-container {
+            max-width: 1400px;
+            margin: 60px auto 0 auto; /* Añade espacio arriba */
+            text-align: center;
+        }
+
+        .video-section-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--f1-red);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--f1-border-color);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporción 16:9 para los videos */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid var(--f1-border-color);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* --- FIN: ESTILOS SECCIÓN DE VIDEOS --- */
+
+        /* --- FOOTER --- */
         .site-footer { background-color: #101015; border-top: 1px solid var(--f1-border-color); padding: 40px 20px; margin-top: 60px; }
         .footer-container { max-width: 1400px; margin: 0 auto; }
         .footer-title { text-transform: uppercase; font-weight: 700; font-size: 1.2rem; color: var(--f1-white); margin: 0 0 30px 0; letter-spacing: 1.5px; }
         .partners-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
         .partner-logo img { max-height: 60px; max-width: 200px; width: auto; height: auto; filter: brightness(0.8) grayscale(0.2); transition: filter 0.3s ease; }
         .partner-logo img:hover { filter: brightness(1) grayscale(0); }
-
     </style>
 </head>
 <body>
@@ -291,6 +251,42 @@
                     </div>
                 </div>
                 <div class="welcome-image-container"><img src="Promocional season 3 MRS.jpeg" alt="Póster de la Season 3 de Master Racing Series"></div>
+            </div>
+            <div class="video-section-container">
+                <h2 class="video-section-title">Videos Destacados</h2>
+                <div class="video-grid">
+
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://clips.twitch.tv/embed?clip=EasySmoothAardvarkMau5-BcnYvsXj1vEpwSQL&parent=https://masterracingseries.github.io/paginaweb-mrs/" 
+                            frameborder="0" 
+                            allowfullscreen="true" 
+                            scrolling="no" 
+                            height="378" 
+                            width="620">
+                        </iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://clips.twitch.tv/embed?video=2521674400&parent=https://masterracingseries.github.io/paginaweb-mrs/" 
+                            frameborder="0" 
+                            allowfullscreen="true" 
+                            scrolling="no" 
+                            height="378" 
+                            width="620">
+                        </iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://clips.twitch.tv/embed?video=2520785597&parent=https://masterracingseries.github.io/paginaweb-mrs/" 
+                            frameborder="0" 
+                            allowfullscreen="true" 
+                            scrolling="no" 
+                            height="378" 
+                            width="620">
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="calendar-view" class="view-section">
@@ -449,7 +445,11 @@
         <div class="footer-container">
             <h3 class="footer-title">OUR PARTNERS</h3>
             <div class="partners-grid">
-                <div class="partner-logo"><img src="logo_onkid.png" alt="Logo Partner OnKids"></div>
+                <div class="partner-logo">
+    <a href="https://www.instagram.com/onkids.cl/" target="_blank" rel="noopener noreferrer">
+        <img src="logo_onkid.png" alt="Logo Partner OnKids">
+    </a>
+</div>
             </div>
         </div>
     </footer>
@@ -609,6 +609,5 @@
             fetchAndDisplayStandings('1');
         });
     </script>
-
 </body>
 </html>
