@@ -25,6 +25,7 @@
             --logo-bg-aston-martin: #00594f;
             --logo-bg-red-bull: #011d30;
             --logo-bg-alpine: #001027;
+            --logo-f1-rojo: #38383f;
         }
 
         body {
@@ -154,6 +155,7 @@
         .team-red-bull .position-logo-wrapper { background-color: var(--logo-bg-red-bull); }
         .team-vcarb .position-logo-wrapper { background-color: var(--logo-bg-vcarb); }
         .team-williams .position-logo-wrapper { background-color: var(--logo-bg-williams); }
+        .team-reserva .position-logo-wrapper { background-color: var(--logo-f1-rojo); }
         @media (max-width: 600px) { .standings-item { height: 55px; } .position-logo-wrapper { width: 120px; } .position { width: 50px; font-size: 1.2em; } .logo-container-standings img { max-width: 40px; max-height: 40px; } .name-wrapper { padding: 0 10px; } .item-name { font-size: 1.1em; } .points-container { width: 70px; font-size: 1.4em; } }
         
                 /* --- INICIO: ESTILOS SECCIÓN DE VIDEOS --- */
@@ -536,6 +538,7 @@
             function getTeamClassName(teamName) {
                 if (!teamName) return '';
                 const lowerCaseName = teamName.toLowerCase();
+                if (lowerCaseName.includes('reserva')) return 'team-reserva';
                 if (lowerCaseName.includes('alpine')) return 'team-alpine';
                 if (lowerCaseName.includes('aston martin')) return 'team-aston-martin';
                 if (lowerCaseName.includes('ferrari')) return 'team-ferrari';
@@ -552,6 +555,7 @@
             function getTeamLogoPath(teamName) {
                 if (!teamName) return '';
                 const lowerCaseName = teamName.toLowerCase();
+                if (lowerCaseName.includes('reserva')) return 'logos_f1/logo_f1_rojo.avif';
                 if (lowerCaseName.includes('alpine')) return 'logos_f1/logo_alpine.png';
                 if (lowerCaseName.includes('aston martin')) return 'logos_f1/logo_aston.png';
                 if (lowerCaseName.includes('ferrari')) return 'logos_f1/logo_ferrari.png';
