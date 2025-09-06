@@ -64,6 +64,76 @@
 
         /* --- VISTAS (BIENVENIDA, CALENDARIO, REGLAMENTO, ADMIN) --- */
         #welcome-view { max-width: 1400px; margin: 0 auto; text-align: center; }
+        
+        /* --- INICIO: SECCIÓN CAMPEONES S3 --- */
+        .champions-section {
+            background-color: var(--f1-card-bg);
+            border: 1px solid var(--f1-border-color);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+        .champions-title {
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--f1-red);
+            margin: 0 0 10px 0;
+        }
+        .champions-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+            color: #d0d0d0;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+        .champions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .champions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .champion-card {
+            background-color: var(--f1-dark-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--f1-border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .champion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+        .champion-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .champion-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .champion-division {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .champion-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--f1-white);
+            text-transform: uppercase;
+            margin: 0;
+        }
+         /* --- FIN: SECCIÓN CAMPEONES S3 --- */
+
         .welcome-logo { max-width: 350px; margin: 0 auto 20px; }
         .welcome-content { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
         @media (min-width: 992px) { .welcome-content { grid-template-columns: 1fr 1fr; text-align: left; } }
@@ -239,7 +309,44 @@
 
     <main class="main-container">
         <section id="welcome-view" class="view-section active">
-             <img src="promocionales_mrs/Logo final.png" alt="Logo de Master Racing Series" class="welcome-logo">
+            
+            <div class="champions-section">
+                <h2 class="champions-title">CAMPEONES SEASON 3</h2>
+                <p class="champions-subtitle">
+                    Las luces se apagan en otra temporada electrizante. Después de batallas rueda a rueda y una dedicación implacable, cuatro pilotos han grabado su nombre en la historia de Master Racing Series. ¡Saludamos a los campeones!
+                </p>
+                <div class="champions-grid">
+                    <div class="champion-card">
+                        <img src="campeones_season_3/campeon_div1_season3_rlsdaruma.png" alt="Campeón División 1">
+                        <div class="champion-info">
+                            <p class="champion-division">Campeón División 1</p>
+                            <h3 class="champion-name">RLS_DARUMA</h3>
+                        </div>
+                    </div>
+                    <div class="champion-card">
+                        <img src="campeones_season_3/Logo final.png" alt="Campeón División 2">
+                        <div class="champion-info">
+                            <p class="champion-division">Campeón División 2</p>
+                            <h3 class="champion-name">POR DEFINIR</h3>
+                        </div>
+                    </div>
+                    <div class="champion-card">
+                        <img src="campeones_season_3/campeon_div3_season3_rlsmatiastapia.png" alt="Campeón División 3">
+                        <div class="champion-info">
+                            <p class="champion-division">Campeón División 3</p>
+                            <h3 class="champion-name">RLS_MATIASTAPIA</h3>
+                        </div>
+                    </div>
+                    <div class="champion-card">
+                        <img src="campeones_season_3/Logo final.png" alt="Campeón División 4">
+                        <div class="champion-info">
+                            <p class="champion-division">Campeón División 4</p>
+                            <h3 class="champion-name">POR DEFINIR</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="promocionales_mrs/Logo final.png" alt="Logo de Master Racing Series" class="welcome-logo">
             <div class="welcome-content">
                 <div class="welcome-text">
                     <h1>Master Racing Series</h1>
